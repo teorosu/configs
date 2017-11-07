@@ -1,33 +1,12 @@
-call plug#begin('~/.vim/plugged')
+packadd minpac
 
-" Number of visual spaces for TAB
-set tabstop=4
+" Init
+call minpac#init()
 
-" Number of spaces in tab when editing
-set softtabstop=4
+" Packages
+call minpac#add('tpope/vim-fugitive')
 
-" Tabs are spaces
-set expandtab
-
-" Show numbers
-set number
-
-" Visual complete for comand menu
-set wildmenu
-set wildmode=longest:full,full
-
-" Highlight matching brackets
-set showmatch
-
-" Highlight search matches
-set hlsearch
-
-" Turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
-
-" Enable syntax processing
-syntax enable
-
-" Initialize plugin system
-call plug#end()
+" Shortcuts
+command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 
