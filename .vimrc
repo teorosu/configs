@@ -4,10 +4,14 @@ packadd minpac
 call minpac#init()
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('scrooloose/nerdtree')
 
 " Shortcuts
 command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+
+" Mappings
+map <C-n> :NERDTreeToggle<CR>
 
 " Number of visual spaces for TAB
 set tabstop=4
