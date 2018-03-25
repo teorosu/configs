@@ -1,64 +1,97 @@
+" PLUGIN INITIALIZATION {
 
-" Initialize plugin system
-packadd minpac
+    "" Initialize plugin system
+    call plug#begin('~/.vim/plugged')
+    
+    Plug 'tpope/vim-fugitive'
+    Plug 'scrooloose/nerdtree'
+    Plug 'kien/ctrlp.vim'
+    Plug 'Shougo/deoplete.nvim'
 
-call minpac#init()
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('k-takata/minpac', {'type': 'opt'})
-call minpac#add('scrooloose/nerdtree')
-call minpac#add('kien/ctrlp.vim')
+    " Go
+    Plug 'fatih/vim-go'
 
-" Shortcuts
-""" Minpac
-command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+    " Go autocompletion
+    Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+    Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
 
-""" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+    " Initialize plugin system
+    call plug#end()
+" }
 
-" Mappings
-map <C-n> :NERDTreeToggle<CR>
+" SHORTCUTS {
 
-" Number of visual spaces for TAB
-set tabstop=4
+    "" ReloadVimrc
+    command! ReloadVimrc source ~/.vimrc
 
-" Number of spaces to shift
-set shiftwidth=4
+" } 
 
-" Number of spaces in tab when editing
-set softtabstop=4
+" PLUGIN CONFIGURATION {
 
-" Tabs are spaces
-set expandtab
+    "" CtrlP
+    let g:ctrlp_map = '<c-p>'
+    let g:ctrlp_cmd = 'CtrlP'
+    let g:ctrlp_working_path_mode = 'ra'
+    set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'link': 'some_bad_symbolic_links',
+      \ }
 
-" Show numbers
-set number
+    "" NERDTree
+    map <C-n> :NERDTreeToggle<CR>
 
-" Visual complete for comand menu
-set wildmenu
-set wildmode=longest:full,full
+    "" Deoplete Autocompletion
+    let g:deoplete#enable_at_startup = 1
 
-" Highlight matching brackets
-set showmatch
+" } 
 
-" Highlight search matches
-set hlsearch
+" VIM CONFIGURATION
 
-" Backspace does not do what is should without these
-set backspace=indent,eol,start
+    "" Indent at the same level of the previous line
+    set autoindent
 
-" Turn off search highlight
-nnoremap <leader><space> :nohlsearch<CR>
+    "" Prevents inserting two spaces after punctuation on a join (J)
+    set nojoinspaces 
 
-" Enable syntax processing
-syntax on
-filetype indent plugin on
+    "" Number of visual spaces for TAB
+    set tabstop=4
 
+    "" Number of spaces to shift
+    set shiftwidth=4
+
+    "" Number of spaces in tab when editing
+    set softtabstop=4
+
+    "" Tabs are spaces
+    set expandtab
+
+    "" Show numbers
+    set number
+
+    "" Visual complete for comand menu
+    set wildmenu
+    set wildmode=longest:full,full
+
+    "" Highlight matching brackets
+    set showmatch
+
+    "" Highlight search matches
+    set hlsearch
+
+    "" Backspace does not do what is should without these
+    set backspace=indent,eol,start
+
+    "" Turn off search highlight
+    nnoremap <leader><space> :nohlsearch<CR>
+
+    "" Enable syntax processing
+    syntax on
+    filetype indent plugin on
+
+   "" Set ton of history (default 20)
+    set history=1000
+" }
